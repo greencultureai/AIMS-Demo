@@ -161,7 +161,7 @@ class Enrich:
 
         cutoff_lst = []
         for i in range(len(seed_words)):
-            cutoff_lst.append(np.percentile(npmi_sel.iloc[i,:].values[np.nonzero(npmi_sel.iloc[i,:])],percentile))
+            cutoff_lst.append(np.percentile(npmi_sel.iloc[i,:].values[npmi_sel.iloc[i,:].to_numpy().nonzero()],percentile))
 
         vdoc = [' '.join([seed_words[i]]+[self.vocab[idx] for idx,val in enumerate(npmi_sel.iloc[i,:]) if val>= np.max(cutoff_lst)]) for i in range(len(seed_words))]
         
